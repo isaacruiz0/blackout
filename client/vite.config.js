@@ -2,9 +2,18 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import tailwindcss from "@tailwindcss/vite";
+import { exec } from "child_process";
 
 export default defineConfig({
-  plugins: [tailwindcss()],
+  plugins: [
+    tailwindcss(),
+    {
+      name: "Update BE dist",
+      handleHotUpdate() {
+        exec("pnpm build:backendui");
+      },
+    },
+  ],
   build: {
     rollupOptions: {
       input: {
