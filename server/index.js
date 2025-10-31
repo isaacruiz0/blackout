@@ -9,10 +9,17 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.get("/api/pages/home", (req, res) => {
-  res.status(200).sendFile(path.join(__dirname + "/dist/src/pages/home.html"));
+app.use(express.static("dist"));
+const indexFilePath = path.join(__dirname, "/dist/index.html");
+app.get("/", (req, res) => {
+  res.status(200).sendFile(indexFilePath);
 });
-
+app.get("/careers", (req, res) => {
+  res.status(200).sendFile(indexFilePath);
+});
+app.get("/quote", (req, res) => {
+  res.status(200).sendFile(indexFilePath);
+});
 app.listen(PORT, () => {
   console.log(`we live on ${PORT}`);
 });
