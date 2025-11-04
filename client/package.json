@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "build:backendui": "rm -r ../server/dist && pnpm build && cp -r ./dist ../server/"
-
+    "build:backendui": "rm -rf ../server/dist && pnpm build && cp -r ./dist ../server/"
   },
   "devDependencies": {
     "typescript": "~5.9.3",
