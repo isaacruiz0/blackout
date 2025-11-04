@@ -1,20 +1,22 @@
 import "./style.css";
-import { Pages } from "../../server/cross_platform_types/pages.ts";
-const staticPathNames = {
-  home: "/",
-  career: "career",
-  quote: "quote",
-};
+import type { Pages } from "../../server/cross_platform_types/pages.ts";
 /**
  * @description Render corresponding page for path and cache pages for navigation
  */
 const initSinglePageApp = async () => {
+  const staticPathNames = {
+    home: "/",
+    career: "/careers",
+    quote: "/quote",
+  };
+
   const renderCurrentPage = async () => {
-    const homePagePath = "/src/pages/home.html",
-      careersPagePath = "/src/pages/careers.html",
-      quotePagePath = "/src/pages/quote.html";
-    const getCurrentPage = async (pathname: string) => {
-      let currentPagePromise: Promise<Response> | undefined;
+    const getCurrentPage = async (pathname: string): Promise<Response> => {
+      const homePagePath = "/src/pages/home.html",
+        careersPagePath = "/src/pages/careers.html",
+        quotePagePath = "/src/pages/quote.html";
+
+      let currentPagePromise;
       switch (pathname) {
         case staticPathNames.home:
           currentPagePromise = fetch(homePagePath);
@@ -26,6 +28,9 @@ const initSinglePageApp = async () => {
           currentPagePromise = fetch(quotePagePath);
           break;
       }
+      if (!currentPagePromise)
+        return Promise.reject(new Error("Page does not exist."));
+
       return currentPagePromise;
     };
     const pathname = window.location.pathname;
@@ -57,7 +62,7 @@ const initSinglePageApp = async () => {
       // CHECKPOINT - Remove / from href
       for (const anchorElement of anchorElements) {
         switch (anchorElement.href) {
-          case staticPathNames.home:
+          case staticPages.home:
             anchorElement.addEventListener("click", (e) => {
               e.preventDefault();
               app.innerHTML = pages.home;
@@ -85,8 +90,7 @@ const initSinglePageApp = async () => {
     const staticPages = await getAllStaticPages();
     overrideAnchorElems(app, staticPages);
   };
-
-  await renderCurrentPage();
+  renderCurrentPage();
   initInstantClientSideRouting();
 };
 
