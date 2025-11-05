@@ -22,14 +22,32 @@ const renderPageOfPathname = async (pathname: Pathname) => {
 /**
  *
  */
-const initInstantClientSideRouting = async () => {};
+const initInstantClientSideRouting = async (app: HTMLElement | undefined) => {
+  if (!app) return;
+  const allPages = await pageService.getAllStaticPages();
+  const delegateInternalRouting = (e: Event) => {
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
+
+    const anchor = target.closest("a") as HTMLAnchorElement | null;
+    if (!anchor) return;
+
+    const pathname = new URL(anchor.href).pathname;
+    if (!isValidPathname(pathname)) return;
+
+    e.preventDefault();
+    const page = allPages[pathname];
+    app.innerHTML = page;
+  };
+  app.addEventListener("click", delegateInternalRouting);
+};
 /**
  * @description Render corresponding page for pathname and cache pages for navigation
  */
 const initSinglePageApp = async () => {
   if (isValidPathname(window.location.pathname)) {
-    await renderPageOfPathname(window.location.pathname);
-    initInstantClientSideRouting();
+    const app = await renderPageOfPathname(window.location.pathname);
+    initInstantClientSideRouting(app);
   } else {
     // TODO: render404
   }
