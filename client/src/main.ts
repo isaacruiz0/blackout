@@ -1,16 +1,11 @@
 import "./style.css";
 import type { Pages } from "../../server/cross_platform_types/pages.ts";
+import constants from "./constants.ts";
 import pageService from "./services/page.ts";
 /**
  * @description Render corresponding page for pathname and cache pages for navigation
  */
 const initSinglePageApp = async () => {
-  const staticPathNames = {
-    home: "/",
-    career: "/careers",
-    quote: "/quote",
-  };
-
   /**
    * @description Renders correspondingpage for pathname
    */
@@ -34,26 +29,26 @@ const initSinglePageApp = async () => {
       const anchorElements = app.getElementsByTagName("a");
       for (const anchorElement of anchorElements) {
         switch (anchorElement.pathname) {
-          case staticPathNames.home:
+          case constants.staticPathNames.home:
             anchorElement.addEventListener("click", (e) => {
               e.preventDefault();
-              history.pushState(null, "", staticPathNames.home);
+              history.pushState(null, "", constants.staticPathNames.home);
               app.innerHTML = pages.home;
               overrideAnchorElems(app, pages);
             });
             break;
-          case staticPathNames.career:
+          case constants.staticPathNames.career:
             anchorElement.addEventListener("click", (e) => {
               e.preventDefault();
-              history.pushState(null, "", staticPathNames.career);
+              history.pushState(null, "", constants.staticPathNames.career);
               app.innerHTML = pages.career;
               overrideAnchorElems(app, pages);
             });
             break;
-          case staticPathNames.quote:
+          case constants.staticPathNames.quote:
             anchorElement.addEventListener("click", (e) => {
               e.preventDefault();
-              history.pushState(null, "", staticPathNames.quote);
+              history.pushState(null, "", constants.staticPathNames.quote);
               app.innerHTML = pages.quote;
               overrideAnchorElems(app, pages);
             });

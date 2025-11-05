@@ -1,5 +1,6 @@
+type html = string;
 export interface Pages {
-  home: string;
-  career: string;
-  quote: string;
+  home: html;
+  career: html;
+  quote: html;
 }

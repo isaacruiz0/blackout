@@ -1,9 +1,5 @@
 import type { Pages } from "../../../server/cross_platform_types/pages";
-const staticPathNames = {
-  home: "/",
-  career: "/careers",
-  quote: "/quote",
-};
+import constants from "../constants";
 
 /**
  * @param pathname - url pathname
@@ -16,13 +12,13 @@ const getPageOfPathname = async (pathname: string): Promise<string> => {
 
   let currentPagePromise;
   switch (pathname) {
-    case staticPathNames.home:
+    case constants.staticPathNames.home:
       currentPagePromise = fetch(homePagePath);
       break;
-    case staticPathNames.career:
+    case constants.staticPathNames.career:
       currentPagePromise = fetch(careersPagePath);
       break;
-    case staticPathNames.quote:
+    case constants.staticPathNames.quote:
       currentPagePromise = fetch(quotePagePath);
       break;
   }
