@@ -1,12 +1,16 @@
 import "./style.css";
-import type { Pages } from "../../server/cross_platform_types/pages.ts";
+import type {
+  Pages,
+  Pathname,
+} from "../../server/cross_platform_types/pages.ts";
+import { isValidPathname } from "../../server/cross_platform_types/pages.ts";
 import constants from "./constants.ts";
 import pageService from "./services/page.ts";
 
 /**
  * @description Renders corresponding page for pathname
  */
-const renderPageOfPathname = async (pathname: string) => {
+const renderPageOfPathname = async (pathname: Pathname) => {
   let currentPageHtml;
   if (pageService.pageCache.has("allPages")) {
     currentPageHtml = pageService.pageCache.get("allPages")[pathname];
@@ -67,8 +71,12 @@ const initInstantClientSideRouting = async () => {
  * @description Render corresponding page for pathname and cache pages for navigation
  */
 const initSinglePageApp = async () => {
-  renderPageOfPathname(window.location.pathname);
-  initInstantClientSideRouting();
+  if (isValidPathname(window.location.pathname)) {
+    await renderPageOfPathname(window.location.pathname);
+    initInstantClientSideRouting();
+  } else {
+    // TODO: render404
+  }
 };
 
 initSinglePageApp();
