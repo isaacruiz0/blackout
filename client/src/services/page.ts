@@ -12,7 +12,7 @@ const pageCache = new Map<"allPages", Pages>();
 const getPageOfPathname = async (pathname: Pathname): Promise<string> => {
   const pageResources: Record<Pathname, () => Promise<Response>> = {
     "/": () => fetch("/src/pages/home.html"),
-    "/career": () => fetch("/src/pages/careers.html"),
+    "/careers": () => fetch("/src/pages/careers.html"),
     "/quote": () => fetch("/src/pages/quote.html"),
   };
   const currentPagePromise = pageResources[pathname]();
