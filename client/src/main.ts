@@ -1,5 +1,6 @@
 import "./style.css";
 import type { Pages } from "../../server/cross_platform_types/pages.ts";
+import pageService from "./services/page.ts";
 /**
  * @description Render corresponding page for pathname and cache pages for navigation
  */
@@ -14,32 +15,9 @@ const initSinglePageApp = async () => {
    * @description Renders correspondingpage for pathname
    */
   const renderCurrentPage = async () => {
-    const getCurrentPage = async (pathname: string): Promise<Response> => {
-      const homePagePath = "/src/pages/home.html",
-        careersPagePath = "/src/pages/careers.html",
-        quotePagePath = "/src/pages/quote.html";
-
-      let currentPagePromise;
-      switch (pathname) {
-        case staticPathNames.home:
-          currentPagePromise = fetch(homePagePath);
-          break;
-        case staticPathNames.career:
-          currentPagePromise = fetch(careersPagePath);
-          break;
-        case staticPathNames.quote:
-          currentPagePromise = fetch(quotePagePath);
-          break;
-      }
-      if (!currentPagePromise)
-        return Promise.reject(new Error("Page does not exist."));
-
-      return currentPagePromise;
-    };
-    const pathname = window.location.pathname;
-    // If all pages is loaded then use that;
-    const currentPageHtml = await getCurrentPage(pathname).then((r) =>
-      r?.text(),
+    // ADD LOGIC - If all pages is loaded then use that;
+    const currentPageHtml = await pageService.getPageOfPathname(
+      window.location.pathname,
     );
     const app = document.getElementById("app");
     if (!app || !currentPageHtml) return;
@@ -48,16 +26,6 @@ const initSinglePageApp = async () => {
     return app;
   };
   const initInstantClientSideRouting = async () => {
-    /**
-     * @description Cache all pages for instant navigation
-     */
-    const getAllStaticPages = async (): Promise<Pages> => {
-      const allPages: Pages = await fetch("api/all_pages").then((r) =>
-        r?.json(),
-      );
-      return allPages;
-    };
-
     /**
      * @description Override the anchor elements default nav behavior to prevent page refreshes and then to navigate to cached page
      */
@@ -94,7 +62,7 @@ const initSinglePageApp = async () => {
       }
     };
     const app = document.getElementById("app");
-    const staticPages = await getAllStaticPages();
+    const staticPages = await pageService.getAllStaticPages();
     overrideAnchorElems(app, staticPages);
   };
   renderCurrentPage();
