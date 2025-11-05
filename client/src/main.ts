@@ -6,11 +6,13 @@ import pageService from "./services/page.ts";
 /**
  * @description Renders corresponding page for pathname
  */
-const renderCurrentPage = async () => {
-  // ADD LOGIC - If all pages is loaded then use that;
-  const currentPageHtml = await pageService.getPageOfPathname(
-    window.location.pathname,
-  );
+const renderPageOfPathname = async (pathname: string) => {
+  let currentPageHtml;
+  if (pageService.pageCache.has("allPages")) {
+    currentPageHtml = pageService.pageCache.get("allPages")[pathname];
+  } else {
+    currentPageHtml = await pageService.getPageOfPathname(pathname);
+  }
   const app = document.getElementById("app");
   if (!app || !currentPageHtml) return;
   // QUESTION: How will this effect navbar if at all?
@@ -65,7 +67,7 @@ const initInstantClientSideRouting = async () => {
  * @description Render corresponding page for pathname and cache pages for navigation
  */
 const initSinglePageApp = async () => {
-  renderCurrentPage();
+  renderPageOfPathname(window.location.pathname);
   initInstantClientSideRouting();
 };
 

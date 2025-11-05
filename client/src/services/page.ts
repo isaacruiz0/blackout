@@ -1,6 +1,8 @@
 import type { Pages } from "../../../server/cross_platform_types/pages";
 import constants from "../constants";
 
+const pageCache = new Map();
+
 /**
  * @param pathname - url pathname
  * @returns HTML string of pathname
@@ -34,8 +36,9 @@ const getPageOfPathname = async (pathname: string): Promise<string> => {
  */
 const getAllStaticPages = async (): Promise<Pages> => {
   const allPages: Pages = await fetch("api/all_pages").then((r) => r?.json());
+  pageCache.set("allPages", allPages);
   return allPages;
 };
 
-const pageService = { getPageOfPathname, getAllStaticPages };
+const pageService = { getPageOfPathname, getAllStaticPages, pageCache };
 export default pageService;
