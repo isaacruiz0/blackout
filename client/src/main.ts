@@ -1,7 +1,7 @@
 import "./style.css";
 import type { Pages } from "../../server/cross_platform_types/pages.ts";
 /**
- * @description Render corresponding page for path and cache pages for navigation
+ * @description Render corresponding page for pathname and cache pages for navigation
  */
 const initSinglePageApp = async () => {
   const staticPathNames = {
@@ -10,6 +10,9 @@ const initSinglePageApp = async () => {
     quote: "/quote",
   };
 
+  /**
+   * @description Renders correspondingpage for pathname
+   */
   const renderCurrentPage = async () => {
     const getCurrentPage = async (pathname: string): Promise<Response> => {
       const homePagePath = "/src/pages/home.html",
@@ -34,11 +37,13 @@ const initSinglePageApp = async () => {
       return currentPagePromise;
     };
     const pathname = window.location.pathname;
+    // If all pages is loaded then use that;
     const currentPageHtml = await getCurrentPage(pathname).then((r) =>
       r?.text(),
     );
     const app = document.getElementById("app");
     if (!app || !currentPageHtml) return;
+    // QUESTION: How will this effect navbar if at all?
     app.innerHTML = currentPageHtml;
     return app;
   };
@@ -59,12 +64,12 @@ const initSinglePageApp = async () => {
     const overrideAnchorElems = (app: HTMLElement | null, pages: Pages) => {
       if (!app) return;
       const anchorElements = app.getElementsByTagName("a");
-      // CHECKPOINT - Remove / from href
       for (const anchorElement of anchorElements) {
-        switch (anchorElement.href) {
-          case staticPages.home:
+        switch (anchorElement.pathname) {
+          case staticPathNames.home:
             anchorElement.addEventListener("click", (e) => {
               e.preventDefault();
+              history.pushState(null, "", staticPathNames.home);
               app.innerHTML = pages.home;
               overrideAnchorElems(app, pages);
             });
@@ -72,6 +77,7 @@ const initSinglePageApp = async () => {
           case staticPathNames.career:
             anchorElement.addEventListener("click", (e) => {
               e.preventDefault();
+              history.pushState(null, "", staticPathNames.career);
               app.innerHTML = pages.career;
               overrideAnchorElems(app, pages);
             });
@@ -79,6 +85,7 @@ const initSinglePageApp = async () => {
           case staticPathNames.quote:
             anchorElement.addEventListener("click", (e) => {
               e.preventDefault();
+              history.pushState(null, "", staticPathNames.quote);
               app.innerHTML = pages.quote;
               overrideAnchorElems(app, pages);
             });
