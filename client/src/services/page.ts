@@ -2,9 +2,8 @@ import type {
   Pages,
   Pathname,
 } from "../../../server/cross_platform_types/pages";
-import constants from "../constants";
 
-const pageCache = new Map();
+const pageCache = new Map<"allPages", Pages>();
 
 /**
  * @param pathname - url pathname
