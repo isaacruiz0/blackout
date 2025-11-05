@@ -1,4 +1,7 @@
-import type { Pages } from "../../../server/cross_platform_types/pages";
+import type {
+  Pages,
+  Pathname,
+} from "../../../server/cross_platform_types/pages";
 import constants from "../constants";
 
 const pageCache = new Map();
@@ -7,23 +10,13 @@ const pageCache = new Map();
  * @param pathname - url pathname
  * @returns HTML string of pathname
  */
-const getPageOfPathname = async (pathname: string): Promise<string> => {
-  const homePagePath = "/src/pages/home.html",
-    careersPagePath = "/src/pages/careers.html",
-    quotePagePath = "/src/pages/quote.html";
-
-  let currentPagePromise;
-  switch (pathname) {
-    case constants.staticPathNames.home:
-      currentPagePromise = fetch(homePagePath);
-      break;
-    case constants.staticPathNames.career:
-      currentPagePromise = fetch(careersPagePath);
-      break;
-    case constants.staticPathNames.quote:
-      currentPagePromise = fetch(quotePagePath);
-      break;
-  }
+const getPageOfPathname = async (pathname: Pathname): Promise<string> => {
+  const pageResources: Record<Pathname, () => Promise<Response>> = {
+    "/": () => fetch("/src/pages/home.html"),
+    "/career": () => fetch("/src/pages/careers.html"),
+    "/quote": () => fetch("/src/pages/quote.html"),
+  };
+  const currentPagePromise = pageResources[pathname]();
   if (!currentPagePromise)
     return Promise.reject(new Error("Page does not exist."));
 

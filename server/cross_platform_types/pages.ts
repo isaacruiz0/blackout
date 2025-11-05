@@ -1,6 +1,3 @@
-type html = string;
-export interface Pages {
-  "/home": html;
-  "/career": html;
-  "/quote": html;
-}
+export type HTML = string;
+export type Pathname = "/" | "/career" | "/quote";
+export type Pages = Record<Pathname, HTML>;
