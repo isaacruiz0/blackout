@@ -4,6 +4,20 @@ import { isValidPathname } from "../../server/cross_platform_types/pages.ts";
 import pageService from "./services/page.ts";
 
 /**
+ * @param app
+ * @description Dynamically added html withi
+ * @warning pure side-effect
+ */
+const executeScripts = (app: HTMLElement) => {
+  const scripts = app.querySelectorAll("script");
+  scripts.forEach((script) => script.remove());
+  scripts.forEach((oldScript) => {
+    const newScript = document.createElement("script");
+    newScript.textContent = oldScript.textContent;
+    document.body.append(newScript);
+  });
+};
+/**
  * @description Renders corresponding page for pathname
  */
 const renderPageOfPathname = async (pathname: Pathname) => {
@@ -15,8 +29,8 @@ const renderPageOfPathname = async (pathname: Pathname) => {
   }
   const app = document.getElementById("app");
   if (!app || !currentPageHtml) return;
-  // QUESTION: How will this effect navbar if at all?
   app.innerHTML = currentPageHtml;
+  executeScripts(app);
   return app;
 };
 /**
@@ -39,6 +53,7 @@ const initInstantClientSideRouting = async (app: HTMLElement | undefined) => {
     window.history.pushState(null, "", pathname);
     const page = allPages[pathname];
     app.innerHTML = page;
+    executeScripts(app);
   };
   app.addEventListener("click", delegateInternalRouting);
   window.addEventListener("popstate", () => {
