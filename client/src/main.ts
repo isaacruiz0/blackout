@@ -36,10 +36,16 @@ const initInstantClientSideRouting = async (app: HTMLElement | undefined) => {
     if (!isValidPathname(pathname)) return;
 
     e.preventDefault();
+    window.history.pushState(null, "", pathname);
     const page = allPages[pathname];
     app.innerHTML = page;
   };
   app.addEventListener("click", delegateInternalRouting);
+  window.addEventListener("popstate", () => {
+    if (isValidPathname(window.location.pathname)) {
+      renderPageOfPathname(window.location.pathname);
+    }
+  });
 };
 /**
  * @description Render corresponding page for pathname and cache pages for navigation
