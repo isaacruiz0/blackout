@@ -3,9 +3,11 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 import tailwindcss from "@tailwindcss/vite";
 import { exec } from "child_process";
+import includeHtml from "vite-plugin-include-html";
 
 export default defineConfig({
   plugins: [
+    includeHtml(),
     tailwindcss(),
     {
       name: "Update BE dist",
