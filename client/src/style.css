@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+.bg-walkie-talkie {
+    background-image: url("/security-drone.webp");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
