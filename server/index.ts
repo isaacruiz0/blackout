@@ -28,7 +28,7 @@ app.get("/api/all_pages", (req, res: express.Response) => {
     throw new Error(err);
   }
 });
-const indexFilePath = path.join(__dirname, "/dist/index.html");
+const indexFilePath = path.join(__dirname, "/dist/src/index.html");
 // The index file will init the single page application
 app.get("/", (req, res: express.Response) => {
   res.status(200).sendFile(indexFilePath);
