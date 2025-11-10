@@ -12,6 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.static("dist"));
+app.use(express.static("public"));
 app.get("/api/all_pages", (req, res: express.Response) => {
   const homePath = path.join(__dirname, "/dist/src/pages/home.html"),
     careerPath = path.join(__dirname, "dist/src/pages/careers.html"),
