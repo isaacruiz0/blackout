@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .bg-walkie-talkie {
     background-image: url("/security-drone.webp");
     background-position: center center;

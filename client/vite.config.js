@@ -19,7 +19,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "index.html"),
+        main: resolve(__dirname, "src/index.html"),
         careers: resolve(__dirname, "src/pages/careers.html"),
         home: resolve(__dirname, "src/pages/home.html"),
         quote: resolve(__dirname, "src/pages/quote.html"),
