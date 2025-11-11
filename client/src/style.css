@@ -11,3 +11,31 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
 }
+.bg-skyscraper {
+    background-image: url("https://prosecurityguard.com/wp-content/uploads/2025/04/1-2.png");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@keyframes fadeBackground {
+    from {
+        background-color: black;
+        color: white;
+        border-color: white;
+    }
+    to {
+        background-color: white;
+        color: black;
+        border-color: black;
+    }
+}
+.animate-fade-bg {
+    animation-name: fadeBackground;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.request-quote-link-button:hover {
+    animation: fadeBackground 2s ease-in-out forwards;
+}
