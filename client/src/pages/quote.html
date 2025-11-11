@@ -1,8 +1,140 @@
 <!doctype html>
 <include src="src/components/nav/Nav.html"></include>
-<h1>QUOTE PAGE</h1>
-<div class="flex flex-col">
-    <a href="/">/</a>
-    <a href="/quote">/quote</a>
-    <a href="/careers">/careers</a>
-</div>
+<main class="h-screen flex justify-center p-20 pb-40" id="quote-main">
+    <div class="border border-white w-full p-20 px-40">
+        <div class="flex flex-col gap-0 pb-1">
+            <h1 class="text-3xl text-white">Secure What Matters Most</h1>
+            <h3 class="text-lg text-gray-500">Reliable coverage</h3>
+        </div>
+        <form class="text-white">
+            <div class="flex gap-1 w-full">
+                <input
+                    class="border-b border-white p-2 w-full"
+                    aria-label="Name form field"
+                    aria-describedby="Enter your name here"
+                    type="text"
+                    placeholder="Name"
+                    name="name"
+                />
+                <input
+                    class="border-b border-white p-2 w-full"
+                    aria-label="Email form field"
+                    aria-describedby="Enter your email here"
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                />
+            </div>
+            <div class="flex gap-1 w-full">
+                <input
+                    class="border-b border-white p-2 w-full"
+                    aria-label="Event form field"
+                    aria-describedby="Enter your event or business"
+                    placeholder="Event"
+                    name="Event name"
+                />
+            </div>
+            <div class="flex gap-1 w-full">
+                <input
+                    class="border-b border-white p-2 w-full"
+                    aria-label="Location form field"
+                    aria-describedby="Enter the location of your event"
+                    placeholder="City, Zipcode"
+                    name="Location"
+                />
+            </div>
+            <div class="flex gap-1 w-full relative">
+                <select
+                    id="service-type-select"
+                    class="border-b border-white p-2 pl-1 text-[#808080] w-full"
+                    name="Service Type"
+                >
+                    <option value="">Select Service Type</option>
+                    <option class="text-white" value="Armed & Unarmed Security">
+                        Armed Security
+                    </option>
+                    <option class="text-white" value="Armed & Unarmed Security">
+                        Unarmed Security
+                    </option>
+                    <option value="Private & Corporate Event Security">
+                        Event Security
+                    </option>
+                    <option value="Executive Protection">
+                        Executive Protection
+                    </option>
+                    <option value="Other (Customer Request)">
+                        Other (Custom Request)
+                    </option>
+                </select>
+            </div>
+            <div class="flex gap-1 w-full">
+                <input
+                    class="border-b border-white p-2 w-full"
+                    placeholder="Hours Needed"
+                    type="number"
+                    aria-label="Hours Needed"
+                    aria-describedby="Enter amount of hours you will need our service"
+                    name="Hours needed"
+                />
+            </div>
+            <div class="flex gap-1 w-full">
+                <input
+                    id="uploadFile"
+                    class="cursor-pointer border-b border-white p-2 w-full text-[#808080]"
+                    placeholder="Upload File"
+                    type="file"
+                    aria-label="Upload file"
+                    aria-describedby="Upload file"
+                    name="Upload file"
+                />
+            </div>
+            <button
+                class="text-lg w-full py-2 mt-5 cursor-pointer text-white border border-white hover:bg-white hover:text-black transition duration-200 ease-in"
+                type="submit"
+            >
+                Send Request
+            </button>
+        </form>
+    </div>
+</main>
+<include src="src/components/footer/Footer.html"></include>
+<script defer>
+    /**
+     * @returns Event listener that updates color of select based on value. Cannot do this with CSS
+     */
+    const setSelectEventListener = () => {
+        const main = document.querySelector("#quote-main");
+        const serviceTypeSelectElement = main.querySelector(
+            "#service-type-select",
+        );
+        return serviceTypeSelectElement.addEventListener("change", (e) => {
+            switch (e.currentTarget.value) {
+                case "":
+                    e.currentTarget.classList.remove("text-white");
+                    e.currentTarget.classList.add("text-[#808080]");
+                    break;
+                default:
+                    e.currentTarget.classList.remove("text-[#808080]");
+                    e.currentTarget.classList.add("text-white");
+                    break;
+            }
+        });
+    };
+    /**
+     * @returns Event listener that updates color of Upload File input when selected. Cannot do this with CSS
+     */
+    const setFileSelectEventListener = () => {
+        const main = document.querySelector("#quote-main");
+        const uploadFile = main.querySelector("#uploadFile");
+        return uploadFile.addEventListener("change", (e) => {
+            const selectedFiles = event.target.files;
+            if (selectedFiles.length > 0) {
+                e.currentTarget.classList.remove("text-[#808080]");
+                e.currentTarget.classList.add("text-white");
+            }
+        });
+    };
+    // Event Listeners
+    setSelectEventListener();
+    setFileSelectEventListener();
+</script>

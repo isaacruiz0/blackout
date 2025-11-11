@@ -18,6 +18,17 @@ const executeScripts = (app: HTMLElement) => {
   });
 };
 /**
+ * @description A shim for client side routing to allow scrolling a section into view from a hash url
+ */
+const scrollToSection = (hash: string, app?: HTMLElement) => {
+  const context = app || document;
+  const id = hash.substring(1);
+  const element = context.querySelector(`#${id}`);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
+/**
  * @description Renders corresponding page for pathname
  */
 const renderPageOfPathname = async (pathname: Pathname) => {
@@ -45,14 +56,17 @@ const initInstantClientSideRouting = async (app: HTMLElement | undefined) => {
 
     const anchor = target.closest("a") as HTMLAnchorElement | null;
     if (!anchor) return;
-
-    const pathname = new URL(anchor.href).pathname;
+    const { pathname, hash } = new URL(anchor.href);
     if (!isValidPathname(pathname)) return;
-
     e.preventDefault();
     window.history.pushState(null, "", pathname);
     const page = allPages[pathname];
     app.innerHTML = page;
+    if (hash) {
+      scrollToSection(hash, app);
+    } else {
+      window.scrollTo(0, 0);
+    }
     executeScripts(app);
   };
   app.addEventListener("click", delegateInternalRouting);
