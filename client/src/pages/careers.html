@@ -1,8 +1,121 @@
 <!doctype html>
 <include src="src/components/nav/Nav.html"></include>
-<h1>CAREERS PAGE</h1>
-<div class="flex flex-col">
-    <a href="/">/</a>
-    <a href="/quote">/quote</a>
-    <a href="/careers">/careers</a>
-</div>
+<main class="h-screen flex justify-center p-20 pb-40">
+    <div class="border border-white p-20 px-40 flex flex-col">
+        <h1 class="mb-10 text-left text-white text-6xl tracking-tight font-extrabold leading-tight text-shadow-md border-b border-white">Join the team</h1>
+        <div class="flex gap-20">
+            <div class="flex flex-col text-white gap-2 flex-1">
+                <h4 class="text-left text-white text-3xl tracking-tight leading-tight text-shadow-md" >What We Look For</h4>
+                <ul class="italic">
+                   <li>BSIS Guard Card (required)</li>
+                   <li>Firearm permit (for armed roles)</li>
+                   <li>Valid driver's license</li>
+                   <li>Communication & awareness</li>
+                   <li>Professional appearance</li>
+                </ul>
+                <h4 class="text-left text-white text-3xl tracking-tight  leading-tight text-shadow-md">What We Offer</h4>
+                <ul class="italic">
+                   <li>Competitive pay</li>
+                   <li>Reliable scheduling</li>
+                   <li>Leadership support</li>
+                   <li>Tech training as we expand</li>
+                </ul>
+            </div>
+            <div class="flex-1 mt-auto">
+                <div class="flex flex-col gap-0 pb-1">
+                    <h1 class="text-3xl text-white">Application</h1>
+                </div>
+                <form class="text-white">
+                    <div class="flex gap-1 w-full">
+                        <input
+                            class="border-b border-white p-2 w-full"
+                            aria-label="Name form field"
+                            aria-describedby="Enter your name here"
+                            type="text"
+                            placeholder="Name"
+                            name="name"
+                        />
+                        <input
+                            class="border-b border-white p-2 w-full"
+                            aria-label="Email form field"
+                            aria-describedby="Enter your email here"
+                            type="email"
+                            placeholder="Email"
+                            name="email"
+                        />
+                    </div>
+                    <div class="flex gap-1 w-full">
+                        <input
+                            class="border-b border-white p-2 w-full"
+                            aria-label="Phone form field"
+                            aria-describedby="Enter your phone number"
+                            placeholder="Phone"
+                            name="Phone"
+                        />
+                        <input
+                            class="border-b border-white p-2 w-full"
+                            aria-label="Location form field"
+                            aria-describedby="Enter the location of your event"
+                            placeholder="City, Zipcode"
+                            name="Location"
+                        />
+                    </div>
+                    <div class="flex gap-1 w-full relative">
+                        <select
+                            id="position-select"
+                            class="cursor-pointer border-b border-white p-2 pl-1 text-[#808080] w-full"
+                            name="position"
+                        >
+                            <option value="">Select Role</option>
+                            <option class="text-white" value="Armed & Unarmed Security">
+                                Junior
+                            </option>
+                            <option class="text-white" value="Armed & Unarmed Security">
+                                Senior
+                            </option>
+                            <option value="Private & Corporate Event Security">
+                                Supervisor
+                            </option>
+                        </select>
+                    </div>
+                    <div class="flex gap-1 w-full">
+                        <input
+                            class="border-b border-white p-2 w-full"
+                            placeholder="BSIS #"
+                            type="number"
+                            aria-label="BSIS #"
+                            aria-describedby="Enter BSIS #"
+                            name="BSIS #"
+                        />
+                        <input
+                            class="border-b border-white p-2 w-full"
+                            placeholder="Firearm#"
+                            type="number"
+                            aria-label="Firearm #"
+                            aria-describedby="Enter Firearm #"
+                            name="Firearm #"
+                        />
+                    </div>
+                    <div class="flex gap-1 w-full">
+                        <input
+                            id="resumeUpload"
+                            class="hidden"
+
+                            type="file"
+                            aria-label="Upload file"
+                            aria-describedby="Upload file"
+                            name="Upload file"
+                        />
+                        <label class="cursor-pointer border-b border-white p-2 w-full text-[#808080]" for="resumeUpload">Upload Resume</label>
+                    </div>
+                    <button
+                        class="text-lg w-full py-2 mt-5 cursor-pointer text-white border border-white hover:bg-white hover:text-black transition duration-200 ease-in"
+                        type="submit"
+                    >
+                        Send Application
+                    </button>
+                </form>
+        </div>
+    </div>
+</main>
+<include src="src/components/footer/Footer.html"></include>
