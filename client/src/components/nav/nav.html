@@ -1,29 +1,83 @@
 <nav
-    class="text-white sticky top-0 w-full flex items-center px-10 justify-between align-center bg-black/10 backdrop-blur-md border border-s-white h-20"
+    class="nav z-10 text-white sticky top-0 w-full flex items-center px-10 py-5 justify-between align-center bg-black/10 backdrop-blur-md border border-s-white"
 >
-    <h1 class="select-none text-xl font-extrabold h-fit">BLACKOUT</h1>
-    <ul class="flex gap-5 h-full items-center">
+    <h1 class="cursor-pointer sm:select-none">
+        <a class="text-xl font-extrabold h-fit" href="/">BLACKOUT</a>
+    </h1>
+
+    <ul
+        class="desktop-links hidden gap-5 h-full items-center sm:flex sm:flex-row"
+    >
         <li
-            class="h-full cursor-pointer font-medium hover:bg-white hover:text-black transition duration-200 ease-in"
+            class="h-full cursor-pointer font-medium hover:bg-white hover:text-black transition duration-100 ease-in"
         >
             <a class="h-full flex items-center px-2" href="/">Home</a>
         </li>
         <li
-            class="h-full cursor-pointer font-medium hover:bg-white hover:text-black transition duration-200 ease-in"
+            class="h-full cursor-pointer font-medium hover:bg-white hover:text-black transition duration-100 ease-in"
         >
             <a class="h-full flex items-center px-2" href="/quote">Quote</a>
         </li>
         <li
-            class="h-full cursor-pointer font-medium hover:bg-white hover:text-black transition duration-200 ease-in"
+            class="h-full cursor-pointer font-medium hover:bg-white hover:text-black transition duration-100 ease-in"
         >
             <a class="h-full flex items-center px-2" href="/#about">About</a>
         </li>
         <li
-            class="h-full cursor-pointer font-medium hover:bg-white hover:text-black transition duration-200 ease-in"
+            class="h-full cursor-pointer font-medium hover:bg-white hover:text-black transition duration-100 ease-in"
         >
             <a class="h-full flex items-center px-2" href="/careers">Careers</a>
         </li>
     </ul>
+
+    <i class="fa-solid fa-bars text-xl cursor-pointer sm:hidden!"></i>
+    <ul
+        class="mobile-links flex flex-col items-start absolute top-0 right-[-90%] w-[90%] bg-black border-t border-b border-l border-white h-screen ease-in duration-200 sm:hidden"
+    >
+        <li
+            class="w-full px-10 py-5 flex items-center border-b border-white select-none font-medium"
+        >
+            <h1 class="cursor-pointer sm:select-none">
+                <a class="text-xl font-extrabold h-fit" href="/">BLACKOUT</a>
+            </h1>
+        </li>
+
+        <li class="w-full">
+            <a
+                class="text-xl w-full px-10 py-5 flex items-center cursor-pointer font-medium active:bg-white active:text-black transition duration-200 ease-in"
+                href="/"
+                >Home</a
+            >
+        </li>
+        <li class="w-full">
+            <a
+                class="text-xl w-full px-10 py-5 flex items-center cursor-pointer font-medium active:bg-white active:text-black transition duration-200 ease-in"
+                href="/quote"
+                >Quote</a
+            >
+        </li>
+        <li class="w-full">
+            <a
+                class="text-xl w-full px-10 py-5 flex items-center cursor-pointer font-medium active:bg-white active:text-black transition duration-200 ease-in"
+                href="/#about"
+                >About</a
+            >
+        </li>
+        <li class="w-full">
+            <a
+                class="text-xl w-full px-10 py-5 flex items-center cursor-pointer font-medium active:bg-white active:text-black transition duration-200 ease-in"
+                href="/careers"
+                >Careers</a
+            >
+        </li>
+    </ul>
 </nav>
 
-<script></script>
+<script>
+    setTimeout(() => {
+        const links = document.querySelector(".nav .mobile-links");
+        links.classList.remove("right-[-90%]");
+        links.classList.add("right-[0]");
+        console.log(links);
+    }, 3000);
+</script>
