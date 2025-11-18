@@ -30,16 +30,20 @@
         </li>
     </ul>
 
-    <i class="fa-solid fa-bars text-xl cursor-pointer sm:hidden!"></i>
+    <i class="mobile-menu-icon fa-solid fa-bars text-xl sm:hidden!"></i>
     <ul
         class="mobile-links flex flex-col items-start absolute top-0 right-[-90%] w-[90%] bg-black border-t border-b border-l border-white h-screen ease-in duration-200 sm:hidden"
     >
         <li
-            class="w-full px-10 py-5 flex items-center border-b border-white select-none font-medium"
+            class="w-full px-10 py-5 flex items-center justify-between border-b border-white select-none font-medium"
         >
             <h1 class="cursor-pointer sm:select-none">
                 <a class="text-xl font-extrabold h-fit" href="/">BLACKOUT</a>
             </h1>
+            <i
+                id="mobile-menu-close"
+                class="fa-solid fa-xmark text-xl font-extrabold"
+            ></i>
         </li>
 
         <li class="w-full">
@@ -73,11 +77,56 @@
     </ul>
 </nav>
 
-<script>
-    setTimeout(() => {
-        const links = document.querySelector(".nav .mobile-links");
-        links.classList.remove("right-[-90%]");
-        links.classList.add("right-[0]");
-        console.log(links);
-    }, 3000);
+<script defer>
+    window.navScript = () => {
+        const openMenuMobile = () => {
+            const links = document.querySelector(".nav .mobile-links");
+            links.classList.remove("right-[-90%]");
+            links.classList.add("right-[0]");
+        };
+        const closeMenuMobile = () => {
+            const links = document.querySelector(".nav .mobile-links");
+            links.classList.remove("right-[0]");
+            links.classList.add("right-[-90%]");
+        };
+        const closeMenuOnOutsideTouch = () => {
+            // Makes sure there is only one true ref to this func otherwise we'd be making new func refs every time on the same property
+            if (!window.handleOutsideTouch) {
+                // Declaring this function globablly to ensure that it is the same reference on clean up
+                window.handleOutsideTouch = (e) => {
+                    const icon = document.querySelector(
+                        "nav .mobile-menu-icon",
+                    );
+                    if (e.target === icon) return;
+
+                    const mobileLinks =
+                        document.querySelector("nav .mobile-links");
+                    if (!mobileLinks.contains(e.target)) {
+                        console.log("RAN");
+                        closeMenuMobile();
+                    }
+                };
+            }
+
+            // Make sure we don't add duplicate listeners to the document since that element persists across page navigations
+            document.removeEventListener("click", window.handleOutsideTouch);
+            document.addEventListener("click", window.handleOutsideTouch);
+        };
+        const openNavFromIcon = () => {
+            const icon = document.querySelector("nav .mobile-menu-icon");
+            icon.addEventListener("click", openMenuMobile);
+        };
+        const closeMenuXCross = () => {
+            const icon = document.getElementById("mobile-menu-close");
+            icon.addEventListener("click", closeMenuMobile);
+        };
+
+        // Event Listeners
+        closeMenuOnOutsideTouch();
+        openNavFromIcon();
+        closeMenuXCross();
+    };
+    window.navScript();
+    // Ensures this script
+    delete window.navScript;
 </script>
