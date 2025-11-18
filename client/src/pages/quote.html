@@ -104,43 +104,47 @@
 </main>
 <include src="src/components/footer/Footer.html"></include>
 <script defer>
-    /**
-     * @returns Event listener that updates color of select based on value. Cannot do this with CSS
-     */
-    const setSelectEventListener = () => {
-        const main = document.querySelector("#quote-main");
-        const serviceTypeSelectElement = main.querySelector(
-            "#service-type-select",
-        );
-        return serviceTypeSelectElement.addEventListener("change", (e) => {
-            switch (e.currentTarget.value) {
-                case "":
-                    e.currentTarget.classList.remove("text-white");
-                    e.currentTarget.classList.add("text-[#808080]");
-                    break;
-                default:
+    window.quoteScript = () => {
+        /**
+         * @returns Event listener that updates color of select based on value. Cannot do this with CSS
+         */
+        const setSelectEventListener = () => {
+            const main = document.querySelector("#quote-main");
+            const serviceTypeSelectElement = main.querySelector(
+                "#service-type-select",
+            );
+            return serviceTypeSelectElement.addEventListener("change", (e) => {
+                switch (e.currentTarget.value) {
+                    case "":
+                        e.currentTarget.classList.remove("text-white");
+                        e.currentTarget.classList.add("text-[#808080]");
+                        break;
+                    default:
+                        e.currentTarget.classList.remove("text-[#808080]");
+                        e.currentTarget.classList.add("text-white");
+                        break;
+                }
+            });
+        };
+        /**
+         * @returns Event listener that updates color of Upload File input when selected. Cannot do this with CSS
+         */
+        const setFileSelectEventListener = () => {
+            const main = document.querySelector("#quote-main");
+            const uploadFile = main.querySelector("#uploadFile");
+            return uploadFile.addEventListener("change", (e) => {
+                const selectedFiles = event.target.files;
+                if (selectedFiles.length > 0) {
                     e.currentTarget.classList.remove("text-[#808080]");
                     e.currentTarget.classList.add("text-white");
-                    break;
-            }
-        });
+                }
+            });
+        };
+        // Event Listeners
+        setSelectEventListener();
+        setFileSelectEventListener();
+        // TODO: FORM SUBMISSION
     };
-    /**
-     * @returns Event listener that updates color of Upload File input when selected. Cannot do this with CSS
-     */
-    const setFileSelectEventListener = () => {
-        const main = document.querySelector("#quote-main");
-        const uploadFile = main.querySelector("#uploadFile");
-        return uploadFile.addEventListener("change", (e) => {
-            const selectedFiles = event.target.files;
-            if (selectedFiles.length > 0) {
-                e.currentTarget.classList.remove("text-[#808080]");
-                e.currentTarget.classList.add("text-white");
-            }
-        });
-    };
-    // Event Listeners
-    setSelectEventListener();
-    setFileSelectEventListener();
-    // TODO: FORM SUBMISSION
+    window.quoteScript();
+    delete window.quoteScript;
 </script>
