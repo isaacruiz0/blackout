@@ -5,7 +5,7 @@ import pageService from "./services/page.ts";
 
 /**
  * @param app
- * @description Dynamically added html withi
+ * @description Dynamically added scripts so that embeddeed comp's JS is executed
  * @warning pure side-effect
  */
 const executeScripts = (app: HTMLElement) => {
@@ -14,7 +14,7 @@ const executeScripts = (app: HTMLElement) => {
   scripts.forEach((oldScript) => {
     const newScript = document.createElement("script");
     newScript.textContent = oldScript.textContent;
-    document.body.append(newScript);
+    app.append(newScript);
   });
 };
 /**
