@@ -33,7 +33,7 @@ html {
 .animate-fade-bg {
     animation-name: fadeBackground;
     animation-duration: 1.5s;
-    animation-iteration-count: 7;
+    animation-iteration-count: 14;
     animation-direction: alternate;
 }
 .request-quote-link-button:hover {
