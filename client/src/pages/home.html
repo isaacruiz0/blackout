@@ -1,27 +1,29 @@
 <!doctype html>
 <include src="src/components/nav/Nav.html"></include>
 <main class="flex flex-col text-white">
-    <section class="p-10">
+    <section class="sm:p-10">
         <div
-            class="white-space-nowrap bg-gray-800 p-20 shadow-lg shadow-white/10 border border-s-white h-full text-center bg-walkie-talkie"
+            class="flex flex-col justify-center items-start pt-10 pb-15 px-5 white-space-nowrap bg-gray-800 sm:p-20 shadow-lg shadow-white/10 border-t-0 sm:border-t border border-s-white sm:h-full text-center bg-walkie-talkie"
         >
             <h1
-                class="text-left text-white text-7xl tracking-tight font-extrabold leading-tight text-shadow-md"
+                class="whitespace-wrap text-left text-white text-5xl sm:text-7xl tracking-tight font-extrabold leading-none text-shadow-md"
             >
                 Modern Protection
             </h1>
             <p
-                class="text-left text-gray-300 text-xl font-light leading-relaxed text-shadow-xl"
+                class="pt-2 text-left leading-none text-gray-300 text-sm sm:text-xl font-light sm:leading-relaxed text-shadow-xl"
             >
                 Dedicated to Safeguarding What Matters
             </p>
         </div>
     </section>
-    <section class="p-10 pt-0 flex flex-col gap-5" id="about">
-        <h1 class="text-4xl font-bold p-5 border border-white">About</h1>
-        <div class="flex gap-5">
+    <section class="p-10 sm:pt-0 flex flex-col gap-5" id="about">
+        <h1 class="text-3xl sm:text-4xl font-bold p-5 border border-white">
+            About
+        </h1>
+        <div class="flex flex-col sm:flex-row gap-5">
             <div class="flex flex-1 flex-col gap-2 border border-white p-5">
-                <h1 class="text-white text-3xl tracking-tight">Who We Are</h1>
+                <h1 class="text-white text-2xl tracking-tight">Who We Are</h1>
                 <p class="italic">
                     Based in Chino, California, serving Los Angeles, Orange, San
                     Bernardino, Riverside, and surrounding areas. Founded by
@@ -30,7 +32,9 @@
                 </p>
             </div>
             <div class="flex flex-1 flex-col gap-2 border border-white p-5">
-                <h1 class="text-white text-3xl tracking-tight">Vision</h1>
+                <h1 class="text-white text-2xl sm:text-3xl tracking-tight">
+                    Vision
+                </h1>
                 <p class="italic">
                     A future where clients rely on both human expertise and
                     technological advancement for smart, responsive safety.
@@ -38,7 +42,7 @@
             </div>
         </div>
         <div class="flex flex-1 flex-col gap-2 border border-white p-5">
-            <h1 class="text-white text-3xl tracking-tight">Mission</h1>
+            <h1 class="text-white text-2xl tracking-tight">Mission</h1>
             <p class="italic">
                 To revolutionize the security industry by bridging the gap
                 between traditional security and modern technology. Deterrence
@@ -47,7 +51,7 @@
             </p>
         </div>
     </section>
-    <section class="p-10 pt-0">
+    <!--<section class="p-10 pt-0">
         <div
             class="p-40 shadow-lg shadow-white/10 border border-s-white h-full text-center bg-skyscraper"
         >
@@ -93,7 +97,6 @@
         <div class="flex flex-col items-center p-10 gap-5">
             <a href="/quote" class="request-quote-link-button animate-fade-bg cursor-pointer text-4xl font-bold border border-white p-5 ">Request Quote Now<a/>
         </div>
-    </section>
-
+    </section>-->
 </main>
 <include src="src/components/footer/Footer.html"></include>
