@@ -1,111 +1,119 @@
 <!doctype html>
 <include src="src/components/nav/Nav.html"></include>
 <main
-    class="h-screen flex flex-col items-center justify-center pt-16 pb-16 px-10 sm:items-start"
+    class="py-16 h-screen flex justify-center items-center sm:p-20 sm:pb-40"
     id="quote-main"
 >
-    <div class="flex flex-col gap-0 pb-5">
-        <h1 class="text-3xl sm:text-5xl text-white">
-            Secure What Matters Most
-        </h1>
-        <h3 class="text-lg text-gray-500">Reliable coverage</h3>
-    </div>
-    <div class="border border-white w-full">
-        <form class="text-white">
-            <div class="flex gap-1 w-full">
-                <input
-                    class="border-b border-white p-2 w-full"
-                    aria-label="Name form field"
-                    aria-describedby="Enter your name here"
-                    type="text"
-                    placeholder="Name"
-                    name="name"
-                />
-                <input
-                    class="border-b border-white p-2 w-full"
-                    aria-label="Email form field"
-                    aria-describedby="Enter your email here"
-                    type="email"
-                    placeholder="Email"
-                    name="email"
-                />
-            </div>
-            <div class="flex gap-1 w-full">
-                <input
-                    class="border-b border-white p-2 w-full"
-                    aria-label="Event form field"
-                    aria-describedby="Enter your event or business"
-                    placeholder="Event"
-                    name="Event name"
-                />
-            </div>
-            <div class="flex gap-1 w-full">
-                <input
-                    class="border-b border-white p-2 w-full"
-                    aria-label="Location form field"
-                    aria-describedby="Enter the location of your event"
-                    placeholder="City, Zipcode"
-                    name="Location"
-                />
-            </div>
-            <div class="flex gap-1 w-full relative">
-                <select
-                    id="service-type-select"
-                    class="cursor-pointer border-b border-white p-2 pl-1 text-[#808080] w-full"
-                    name="Service Type"
+    <section class="flex flex-col px-10 sm:px-0">
+        <div class="flex flex-col gap-0 pb-5">
+            <h1 class="text-3xl sm:text-5xl text-white">
+                Secure What Matters Most
+            </h1>
+            <h3 class="text-lg text-gray-500">Reliable coverage</h3>
+        </div>
+        <div class="w-full">
+            <form class="text-white">
+                <div class="flex gap-1 w-full">
+                    <input
+                        class="border-b border-white p-2 w-full"
+                        aria-label="Name form field"
+                        aria-describedby="Enter your name here"
+                        type="text"
+                        placeholder="Name"
+                        name="name"
+                    />
+                    <input
+                        class="border-b border-white p-2 w-full"
+                        aria-label="Email form field"
+                        aria-describedby="Enter your email here"
+                        type="email"
+                        placeholder="Email"
+                        name="email"
+                    />
+                </div>
+                <div class="flex gap-1 w-full">
+                    <input
+                        class="border-b border-white p-2 w-full"
+                        aria-label="Event form field"
+                        aria-describedby="Enter your event or business"
+                        placeholder="Event"
+                        name="Event name"
+                    />
+                </div>
+                <div class="flex gap-1 w-full">
+                    <input
+                        class="border-b border-white p-2 w-full"
+                        aria-label="Location form field"
+                        aria-describedby="Enter the location of your event"
+                        placeholder="City, Zipcode"
+                        name="Location"
+                    />
+                </div>
+                <div class="flex gap-1 w-full relative">
+                    <select
+                        id="service-type-select"
+                        class="cursor-pointer border-b border-white p-2 pl-1 text-[#808080] w-full"
+                        name="Service Type"
+                    >
+                        <option value="">Select Service</option>
+                        <option
+                            class="text-white"
+                            value="Armed & Unarmed Security"
+                        >
+                            Armed Security
+                        </option>
+                        <option
+                            class="text-white"
+                            value="Armed & Unarmed Security"
+                        >
+                            Unarmed Security
+                        </option>
+                        <option value="Private & Corporate Event Security">
+                            Event Security
+                        </option>
+                        <option value="Executive Protection">
+                            Executive Protection
+                        </option>
+                        <option value="Other (Customer Request)">
+                            Other (Custom Request)
+                        </option>
+                    </select>
+                </div>
+                <div class="flex gap-1 w-full">
+                    <input
+                        class="border-b border-white p-2 w-full"
+                        placeholder="Hours Needed"
+                        type="number"
+                        aria-label="Hours Needed"
+                        aria-describedby="Enter amount of hours you will need our service"
+                        name="Hours needed"
+                    />
+                </div>
+                <div class="flex gap-1 w-full">
+                    <input
+                        id="uploadFile"
+                        class="hidden"
+                        placeholder="Upload File"
+                        type="file"
+                        aria-label="Upload file"
+                        aria-describedby="Upload file"
+                        name="Upload file"
+                    />
+                    <label
+                        class="cursor-pointer border-b border-white p-2 w-full text-[#808080]"
+                        for="uploadFile"
+                        >Upload File
+                    </label>
+                </div>
+                <button
+                    class="text-lg w-full py-2 mt-5 cursor-pointer text-white border border-white hover:bg-white active:bg-white hover:text-black active:text-black transition duration-200 ease-in"
+                    type="submit"
                 >
-                    <option value="">Select Service</option>
-                    <option class="text-white" value="Armed & Unarmed Security">
-                        Armed Security
-                    </option>
-                    <option class="text-white" value="Armed & Unarmed Security">
-                        Unarmed Security
-                    </option>
-                    <option value="Private & Corporate Event Security">
-                        Event Security
-                    </option>
-                    <option value="Executive Protection">
-                        Executive Protection
-                    </option>
-                    <option value="Other (Customer Request)">
-                        Other (Custom Request)
-                    </option>
-                </select>
-            </div>
-            <div class="flex gap-1 w-full">
-                <input
-                    class="border-b border-white p-2 w-full"
-                    placeholder="Hours Needed"
-                    type="number"
-                    aria-label="Hours Needed"
-                    aria-describedby="Enter amount of hours you will need our service"
-                    name="Hours needed"
-                />
-            </div>
-            <div class="flex gap-1 w-full">
-                <input
-                    id="uploadFile"
-                    class="hidden"
-                    placeholder="Upload File"
-                    type="file"
-                    aria-label="Upload file"
-                    aria-describedby="Upload file"
-                    name="Upload file"
-                />
-                <label
-                    class="cursor-pointer border-b border-white p-2 w-full text-[#808080]"
-                    for="uploadFile"
-                    >Upload File
-                </label>
-            </div>
-            <button
-                class="text-lg w-full py-2 cursor-pointer text-white hover:bg-white hover:text-black transition duration-200 ease-in"
-                type="submit"
-            >
-                Send Request
-            </button>
-        </form>
-    </div>
+                    Send Request
+                </button>
+            </form>
+        </div>
+    </section>
 </main>
 <include src="src/components/footer/Footer.html"></include>
 <script defer>
